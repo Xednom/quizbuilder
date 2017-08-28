@@ -1,0 +1,13 @@
+{% extends 'quiz/base.html' %}
+
+  {% block body %}
+    {% if latest_quiz_list %}
+      <ul>
+        {% for quiz in latest_quiz_list %}
+        <li><a href="{% url 'question' quiz.id %}">{{ quiz.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+    <h1>No Quizes available</h1>
+    {% endif %}
+  {% endblock %}
