@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(
         attrs={
@@ -10,39 +11,35 @@ class RegistrationForm(UserCreationForm):
         }
     ))
 
-    first_name = forms.CharField(required=True)
-    first_name = forms.CharField(widget=forms.TextInput(
+    first_name = forms.CharField(required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'First name',
         }
     ))
 
-    last_name = forms.CharField(required=True)
-    last_name = forms.CharField(widget=forms.TextInput(
+    last_name = forms.CharField(required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Last name',
         }
     ))
-    email = forms.EmailField(required=True)
-    email = forms.EmailField(widget=forms.EmailInput(
+
+    email = forms.EmailField(required=True, widget=forms.EmailInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Email',
         }
     ))
 
-    password1 = forms.CharField(required=True)
-    password1 = forms.CharField(widget=forms.PasswordInput(
+    password1 = forms.CharField(required=True, widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Password',
         }
     ))
 
-    password2 = forms.CharField(required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput(
+    password2 = forms.CharField(required=True, widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Confirm password',
@@ -70,6 +67,7 @@ class RegistrationForm(UserCreationForm):
                 user.save()
 
             return user
+
 
 class EditProfileForm(UserChangeForm):
 
