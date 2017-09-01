@@ -8,16 +8,20 @@ from .models import Quiz, Question, Choice
 
 # Create your views here.
 
+
 class QuizView(generic.ListView):
+
     template_name = 'quiz/user/quiz.html'
     context_object_name = 'latest_quiz_list'
 
     def get_queryset(self):
-        return Quiz.objects.order_by('-date_created')[:5]
+        return Quiz.objects.order_by('date_created')[:5]
+
 
 class QuestionView(generic.DetailView):
     model = Question
     template_name = 'quiz/user/question.html'
+
 
 class RegistrationFormView(View):
     form_class = RegistrationForm
@@ -38,6 +42,7 @@ class RegistrationFormView(View):
             user.save()
             return redirect(reverse('login'))
         return render(request, 'quiz/user/registration.html', {'form':form})
+
 
 def login(request):
     _message = 'Please login here'
